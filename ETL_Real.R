@@ -58,4 +58,40 @@ write.csv2(sinistrosRecifeRaw, "bases_tratadas/sinistrosRecife.csv")
 
 ######################################################
 
+#Desta vez, mostre que você entendeu o conceito de área intermediária e ambiente no R, modificando o código para manter sinistrosRecifeRaw e a função naZero (ela pode ser útil no futuro!). Além disso, indique qual dos objetos na área intermediária mais estavam usando memória do R. Lembre-se de compartilhar um link do github!!!
 
+
+#Verificando a staging area e o uso de memória
+
+ls() # lista todos os objetos no R
+
+#Verificando quanto cada objeto está ocupando de área
+
+for (itm in ls()) { 
+  print(formatC(c(itm, object.size(get(itm))), 
+                format="d", 
+                width=30), 
+        quote=F)
+}
+
+#lista dos Objetos com mais uso de memória do PC:
+# naZero                                     13336
+#sinistroRecife2019Modificada              4588368
+#sinistrosRecife2019Raw                    5851088
+#sinistrosRecife2020Raw                    1891328
+#sinistrosRecife2021Raw                     142248
+#sinistrosRecifeRaw                        6930448
+
+
+# Removendo os objetos da staging area
+
+gc() # uso explícito do garbage collector
+
+# deletando todos os elementos, exceto "sinistrosRecifeRaw" e "naZero": 
+rm(list=(ls() [ls()!="sinistrosRecifeRaw" & ls()!="naZero"]))
+
+
+
+saveRDS(sinistrosRecifeRaw, "bases_tratadas/sinistrosRecife.rds")
+
+write.csv2(sinistrosRecifeRaw, "bases_tratadas/sinistrosRecife.csv")
