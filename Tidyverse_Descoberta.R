@@ -1,10 +1,9 @@
-
 install.packages("funModeling")
+install.packages("validate")
+library(dplyr)
 library(funModeling)
 library(tidyverse)
 library(data.table)
-library(dplyr)
-install.packages("validate")
 library(validate)
 
 ##DESCOBERTA
@@ -18,7 +17,8 @@ glimpse(sinistrosRecife2019) # olhada nos dados
 glimpse(sinistrosRecife2019$vitimas) # Verifica uma única variável
 status(sinistrosRecife2019) # estrutura dos dados (missing etc)
 freq(sinistrosRecife2019) # frequência das variáveis fator
-freq(sinistrosRecife2019$vitimas) # frequência das variáveis fator, selecionando uma única variavel 
+freq(sinistrosRecife2019$vitimas) #frequência das variáveis fator, selecionando variavel 
 plot_num(sinistrosRecife2019) # exploração das variáveis numéricas
 profiling_num(sinistrosRecife2019) # estatísticas das variáveis numéricas
+
 
